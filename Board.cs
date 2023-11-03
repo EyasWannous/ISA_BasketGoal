@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Diagnostics.Metrics;
 using System.Linq;
 using System.Reflection;
 using System.Text;
@@ -18,18 +19,6 @@ internal class Board
     public readonly int ColumnNumbers;
     public readonly int RowNumbers;
     public char[,] PlayBoard;
-
-    public Board(
-        int columnNumbers,
-        int rowNumbers,
-        char[,] playBoard)
-    {
-        BasketPosition = new(-1, -1);
-        BallPosition[0] = new(-1, -1);
-        ColumnNumbers = columnNumbers;
-        RowNumbers = rowNumbers;
-        PlayBoard = playBoard;
-    }
 
     public Board(
         Position basketPosition,
@@ -382,7 +371,16 @@ internal class Board
     {
         if (moved == 'O')
         {
-            BallPosition[BallPosition.BinarySearch(oldP)]
+            int index = 0;
+            for (int i = 0; i < BallPosition.Count; i++)
+            {
+                if (BallPosition[i].Row == oldP.Row && BallPosition[i].Column == oldP.Column)
+                {
+                    index = i;
+                    break;
+                }
+            }
+            BallPosition[index]
                 = new(newP.Row, newP.Column);
         }
 

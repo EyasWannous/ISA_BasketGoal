@@ -9,10 +9,20 @@ namespace ISA_BasketGoal;
 
 internal class BoardNode : Board
 {
+    public BoardNode? Father { get; set; }
 
-    public List<BoardNode>? ChildrenNodes { get; set; }
+    public List<BoardNode>? MyChildren { get; set; }
 
     public BoardNode(Board myBoard) : base(myBoard) { }
+
+    public BoardNode(Board myBoard, BoardNode Daddy) : base(myBoard) => Father = Daddy;
+
+    public BoardNode(BoardNode boardNode) : base(boardNode)
+    {
+        if (boardNode.Father is not null) Father = boardNode.Father;
+
+        if (boardNode.MyChildren is not null) MyChildren = boardNode.MyChildren;
+    }
 
     public void GetChildren()
     {
@@ -20,11 +30,11 @@ internal class BoardNode : Board
 
         if (!boards.Any()) return;
 
-        ChildrenNodes = new();
+        MyChildren = new();
         boards.ForEach(board =>
         {
-            BoardNode boardNode = new(board);
-            ChildrenNodes.Add(boardNode);
+            BoardNode boardNode = new(board, this);
+            MyChildren.Add(boardNode);
         });
 
     }
