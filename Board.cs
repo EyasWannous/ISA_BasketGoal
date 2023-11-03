@@ -106,6 +106,7 @@ internal class Board
 
     protected bool MoveDown()
     {
+        bool didEat = false;
         for (int i = RowNumbers - 1; i >= 0; i--)
         {
             for (int j = 0; j < ColumnNumbers; j++)
@@ -114,9 +115,10 @@ internal class Board
 
                 Position obstacle = GetFirstObstacleInRoad(new(i, j), Moves._downMove);
 
-                if (!CheckCollisionWithSides(obstacle)
+                if (!didEat && !CheckCollisionWithSides(obstacle)
                     && PlayBoard[obstacle.Row, obstacle.Column] == 'V')
                 {
+                    didEat = true;
                     Eat(new(i, j));
                     continue;
                 }
@@ -479,7 +481,6 @@ internal class Board
 
         unchecked
         {
-
             HashCode hash = new();
             hash.Add(RowNumbers);
             hash.Add(ColumnNumbers);
