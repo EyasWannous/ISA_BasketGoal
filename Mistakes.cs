@@ -334,7 +334,7 @@ internal class Mistakes
     //     return hash;
     // }
 
-    public void BoardNodeAMistake() { }
+    public void BoardNodeMistake() { }
     // public Board MyBoard { get; set; }
     // public BoardNode(Board myBoard, BoardNode boardNode)
     // {
@@ -353,4 +353,33 @@ internal class Mistakes
     //     return MyBoard.GetHashCode();
     // }
 
+    public void ClassMistake() { }
+    //class HelpFunctions
+    //{
+    //    public static List<BoardNode> GetFinalStates(HashSet<BoardNode> BoardNodes)
+    //    {
+    //        List<BoardNode> LBN = new();
+
+    //        foreach (BoardNode item in BoardNodes)
+    //        {
+    //            if (item.IsFinal()) LBN.Add(item);
+    //        }
+
+    //        return LBN;
+    //    }
+
+    //}
+
+    public void ConstructorMistake() { }
+    //public Board(
+    //    int columnNumbers,
+    //    int rowNumbers,
+    //    char[,] playBoard)
+    //{
+    //    BasketPosition = new(-1, -1);
+    //    BallPosition[0] = new(-1, -1);
+    //    ColumnNumbers = columnNumbers;
+    //    RowNumbers = rowNumbers;
+    //    PlayBoard = playBoard;
+    //}
 }
