@@ -33,7 +33,7 @@ internal static class PhaseManager
     public static BoardNode LoadPhase(int PhaseNumber)
     {
         CurrentPhase = PhaseNumber;
-        return phases[PhaseNumber - 1];
+        return new(phases[PhaseNumber - 1]);
     }
 
     public static BoardNode NextPhase()
