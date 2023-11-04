@@ -28,6 +28,15 @@ internal static class PhaseManager
         new Phase13().Load(),
         new Phase14().Load(),
         new Phase15().Load(),
+        new Phase16().Load(),
+        new Phase17().Load(),
+        new Phase18().Load(),
+        new Phase19().Load(),
+        new Phase20().Load(),
+        new Phase21().Load(),
+        new Phase22().Load(),
+        new Phase23().Load(),
+        new Phase24().Load(),
     };
 
     public static BoardNode LoadPhase(int PhaseNumber)

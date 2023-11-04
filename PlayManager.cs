@@ -40,6 +40,14 @@ internal class PlayManager
             "14" => BuildPhase(14),
             "15" => BuildPhase(15),
             "16" => BuildPhase(16),
+            "17" => BuildPhase(17),
+            "18" => BuildPhase(18),
+            "19" => BuildPhase(19),
+            "20" => BuildPhase(20),
+            "21" => BuildPhase(21),
+            "22" => BuildPhase(22),
+            "23" => BuildPhase(23),
+            "24" => BuildPhase(24),
             _ => false,
         };
     }
@@ -56,7 +64,7 @@ internal class PlayManager
         else if (_playMode == "DFS")
         {
             _watch = System.Diagnostics.Stopwatch.StartNew();
-            _dFS.Solve(_boardNode);
+            _dFS.Solve(_boardNode, true);
             _finalStates = _dFS.GetFinalStates();
             this.FillFinal();
             PrintAllRoadsToFinalStates(_dFS.BoardNodes);
@@ -65,7 +73,25 @@ internal class PlayManager
         else if (_playMode == "BFS")
         {
             _watch = System.Diagnostics.Stopwatch.StartNew();
-            _bFS.Solve(_boardNode);
+            _bFS.Solve(_boardNode, true);
+            _finalStates = _bFS.GetFinalStates();
+            this.FillFinal();
+            PrintAllRoadsToFinalStates(_bFS.BoardNodes);
+            _watch.Stop();
+        }
+        else if (_playMode == "DFSone")
+        {
+            _watch = System.Diagnostics.Stopwatch.StartNew();
+            _dFS.Solve(_boardNode, false);
+            _finalStates = _dFS.GetFinalStates();
+            this.FillFinal();
+            PrintAllRoadsToFinalStates(_dFS.BoardNodes);
+            _watch.Stop();
+        }
+        else if (_playMode == "BFSone")
+        {
+            _watch = System.Diagnostics.Stopwatch.StartNew();
+            _bFS.Solve(_boardNode, false);
             _finalStates = _bFS.GetFinalStates();
             this.FillFinal();
             PrintAllRoadsToFinalStates(_bFS.BoardNodes);
@@ -91,13 +117,17 @@ internal class PlayManager
             state.FillMyRoad();
             state.PrintRoadToFinal();
 
-            Console.WriteLine("========================================");
-            Console.WriteLine($"\tNumber of Final State : {counter}    ");
-            Console.WriteLine("========================================");
+            Console.WriteLine("================================================");
+            Console.WriteLine($"\tNumber of this Final State : {counter}       ");
+            Console.WriteLine("================================================");
             Console.WriteLine();
 
             counter++;
         });
+        Console.WriteLine();
+        Console.WriteLine($"Statistics :");
+        Console.WriteLine();
+
         Console.WriteLine();
         Console.WriteLine($"Number of States : {hashBoardNode.Count}");
         Console.WriteLine();
