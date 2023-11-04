@@ -20,7 +20,7 @@ internal class BFS
         NodesQueue.Enqueue(boardNode);
     }
 
-    public void Solve(BoardNode boardNode)
+    public void Solve(BoardNode boardNode, bool solveAll)
     {
         NodesQueue.Enqueue(boardNode);
 
@@ -32,6 +32,8 @@ internal class BFS
 
             BoardNodes.Add(temp);
 
+            if (!solveAll && temp.IsFinal()) return;
+            
             temp.GetChildren();
 
             if (temp.MyChildren is null) continue;
