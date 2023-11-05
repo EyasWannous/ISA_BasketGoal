@@ -26,13 +26,15 @@ class FinalStates : BoardNode
         RoadToFinal.Reverse();
     }
 
-    public void PrintRoadToFinal()
+    public int PrintRoadToFinal()
     {
-        if (RoadToFinal is null) return;
+        if (RoadToFinal is null) return 0;
 
         RoadToFinal.ForEach(state =>
         {
             Console.WriteLine(state);
         });
+
+        return RoadToFinal.Count;
     }
 }
