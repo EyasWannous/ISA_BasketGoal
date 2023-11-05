@@ -382,4 +382,28 @@ internal class Mistakes
     //    RowNumbers = rowNumbers;
     //    PlayBoard = playBoard;
     //}
+
+    public void GetFirstObstacleInRoadMistake() { }
+    //Position? ObstacleInRoad;
+
+
+    //ObstacleInRoad = GetObstacleInCollection(newPlace, BasketPosition);
+    //if (ObstacleInRoad is not null) return ObstacleInRoad;
+
+    //ObstacleInRoad = GetObstacleInCollection(newPlace, BallPosition);
+    //if (ObstacleInRoad is not null) return ObstacleInRoad;
+
+    //if (FixedWalls is not null)
+    //{
+    //    ObstacleInRoad = GetObstacleInCollection(newPlace, FixedWalls);
+    //    if (ObstacleInRoad is not null) return ObstacleInRoad;
+    //}
+
+    //if (Coins is not null)
+    //{
+    //    ObstacleInRoad = GetObstacleInCollection(newPlace, Coins);
+    //    if (ObstacleInRoad is not null) return ObstacleInRoad;
+    //}
+
+    //newPlace += move;
 }
