@@ -85,4 +85,12 @@ internal class BFS
 
         return LBN;
     }
+
+    public void PrintAll()
+    {
+        foreach (var item in BoardNodes)
+        {
+            Console.WriteLine(item);
+        }
+    }
 }

@@ -74,4 +74,12 @@ internal class DFS
 
         return LBN;
     }
+
+    public void PrintAllStates ()
+    {
+        foreach (var item in BoardNodes)
+        {
+            Console.WriteLine(item);
+        }
+    }
 }
