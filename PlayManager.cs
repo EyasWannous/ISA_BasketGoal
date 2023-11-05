@@ -13,6 +13,7 @@ internal class PlayManager
     private System.Diagnostics.Stopwatch? _watch;
     private BFS _bFS = new();
     private DFS _dFS = new();
+    private UniformCost _uni = new();
     private List<BoardNode> _finalStates = new();
     private List<FinalStates> _finals = new();
     private BoardNode? _boardNode;
@@ -48,6 +49,7 @@ internal class PlayManager
             "22" => BuildPhase(22),
             "23" => BuildPhase(23),
             "24" => BuildPhase(24),
+            "25" => BuildPhase(25),
             _ => false,
         };
     }
@@ -69,6 +71,7 @@ internal class PlayManager
             this.FillFinal();
             PrintAllRoadsToFinalStates(_dFS.BoardNodes);
             _watch.Stop();
+            //_dFS.PrintAllStates();
         }
         else if (_playMode == "BFS")
         {
@@ -97,6 +100,15 @@ internal class PlayManager
             PrintAllRoadsToFinalStates(_bFS.BoardNodes);
             _watch.Stop();
         }
+        else if (_playMode == "UNICOST")
+        {
+            _watch = System.Diagnostics.Stopwatch.StartNew();
+            _uni.Solve(_boardNode);
+            _finalStates = _uni.GetFinalStates();
+            this.FillFinal();
+            PrintAllRoadsToFinalStates(_uni.BoardNodes);
+            _watch.Stop();
+        }
 
         return true;
     }
@@ -115,8 +127,10 @@ internal class PlayManager
         _finals.ForEach(state =>
         {
             state.FillMyRoad();
-            state.PrintRoadToFinal();
+            int count = state.PrintRoadToFinal();
 
+            Console.WriteLine();
+            Console.WriteLine($"\tNumber of States : {count}                   ");
             Console.WriteLine("================================================");
             Console.WriteLine($"\tNumber of this Final State : {counter}       ");
             Console.WriteLine("================================================");
