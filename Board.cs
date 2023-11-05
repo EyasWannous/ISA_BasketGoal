@@ -19,6 +19,7 @@ internal class Board
     public readonly int ColumnNumbers;
     public readonly int RowNumbers;
     public char[,] PlayBoard;
+    public List<Position>? MovingWalls;
 
     public Board(
         Position basketPosition,
@@ -27,7 +28,8 @@ internal class Board
         Position? coin,
         int columnNumbers,
         int rowNumbers,
-        char[,] playBoard)
+        char[,] playBoard,
+        List<Position>? movingWalls)
     {
         BasketPosition = basketPosition;
         BallPosition = ballPosition;
@@ -36,6 +38,7 @@ internal class Board
         ColumnNumbers = columnNumbers;
         RowNumbers = rowNumbers;
         PlayBoard = playBoard;
+        MovingWalls = movingWalls;
     }
 
     public Board(Board board)
@@ -57,6 +60,7 @@ internal class Board
 
         if (board.FixedWalls is not null) FixedWalls = board.FixedWalls.ToList();
         if (board.Coin is not null) Coin = board.Coin.Copy();
+        if (board.MovingWalls is not null) MovingWalls = board.MovingWalls.ToList();
     }
 
     public char this[int indexOne, int indexTwo]
@@ -170,7 +174,6 @@ internal class Board
                 PlayBoard[i, obstacle.Column - Moves._rightMove.Column] = temp;
 
                 UpdateMovedElement(temp, new(i, j), new(i, obstacle.Column - Moves._rightMove.Column));
-
             }
         }
 
@@ -334,7 +337,6 @@ internal class Board
     protected Position GetFirstObstacleInRoad(Position element, Position move)
     {
         Position newPlace = element + move;
-        //Position? ObstacleInRoad;
 
         while (!CheckCollisionWithSides(newPlace))
         {
@@ -344,25 +346,6 @@ internal class Board
                 continue;
             }
 
-            //ObstacleInRoad = GetObstacleInCollection(newPlace, BasketPosition);
-            //if (ObstacleInRoad is not null) return ObstacleInRoad;
-
-            //ObstacleInRoad = GetObstacleInCollection(newPlace, BallPosition);
-            //if (ObstacleInRoad is not null) return ObstacleInRoad;
-
-            //if (FixedWalls is not null)
-            //{
-            //    ObstacleInRoad = GetObstacleInCollection(newPlace, FixedWalls);
-            //    if (ObstacleInRoad is not null) return ObstacleInRoad;
-            //}
-
-            //if (Coins is not null)
-            //{
-            //    ObstacleInRoad = GetObstacleInCollection(newPlace, Coins);
-            //    if (ObstacleInRoad is not null) return ObstacleInRoad;
-            //}
-
-            //newPlace += move;
             return newPlace;
         }
 
@@ -374,6 +357,7 @@ internal class Board
         if (moved == 'O')
         {
             int index = 0;
+
             for (int i = 0; i < BallPosition.Count; i++)
             {
                 if (BallPosition[i].Row == oldP.Row && BallPosition[i].Column == oldP.Column)
@@ -382,7 +366,25 @@ internal class Board
                     break;
                 }
             }
+
             BallPosition[index]
+                = new(newP.Row, newP.Column);
+        }
+
+        else if (moved == '■')
+        {
+            int index = 0;
+
+            for (int i = 0; i < MovingWalls!.Count; i++)
+            {
+                if (MovingWalls![i].Row == oldP.Row && MovingWalls![i].Column == oldP.Column)
+                {
+                    index = i;
+                    break;
+                }
+            }
+
+            MovingWalls![index]
                 = new(newP.Row, newP.Column);
         }
 
@@ -394,7 +396,8 @@ internal class Board
     protected Position Eat(Position obstacle)
     {
         if (CheckCollisionWithSides(obstacle)
-            || PlayBoard[obstacle.Row, obstacle.Column] == 'X') return obstacle;
+            || PlayBoard[obstacle.Row, obstacle.Column] == 'X'
+            || PlayBoard[obstacle.Row, obstacle.Column] == '■') return obstacle;
 
         if (Coin is not null && obstacle == Coin) Coin = null;
 
@@ -508,6 +511,14 @@ internal class Board
                 for (int j = 0; j < ColumnNumbers; j++)
                 {
                     hash.Add(PlayBoard[i, j]);
+                }
+            }
+
+            if (MovingWalls is not null)
+            {
+                foreach (var wall in MovingWalls)
+                {
+                    hash.Add(wall);
                 }
             }
 
