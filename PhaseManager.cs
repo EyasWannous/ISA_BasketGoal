@@ -37,6 +37,7 @@ internal static class PhaseManager
         new Phase22().Load(),
         new Phase23().Load(),
         new Phase24().Load(),
+        new Phase25().Load(),
     };
 
     public static BoardNode LoadPhase(int PhaseNumber)
