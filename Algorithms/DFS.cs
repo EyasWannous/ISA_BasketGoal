@@ -11,28 +11,36 @@ internal class DFS
     private bool _breakAll = false;
     public HashSet<BoardNode> BoardNodes { get; set; } = new();
 
+    public Stack<BoardNode> NodesStack { get; set; } = new();
+
     public DFS() { }
 
     public DFS(BoardNode boardNode) => BoardNodes.Add(boardNode);
 
     public void Solve(BoardNode boardNode, bool solveAll)
     {
-        if (_breakAll) return;
-
-        if (BoardNodes.Contains(boardNode)) return;
-
-        BoardNodes.Add(boardNode);
-
-        if (!solveAll && boardNode.IsFinal()) _breakAll = true;
-        
-        boardNode.GetChildren();
-
-        if (boardNode.MyChildren is null) return;
-
-        boardNode.MyChildren.ForEach(child =>
+        NodesStack.Push(boardNode);
+        while (NodesStack.Count > 0)
         {
-            Solve(child, solveAll);
-        });
+            if (_breakAll) return;
+
+            BoardNode temp = NodesStack.Pop();
+
+            if (BoardNodes.Contains(temp)) continue;
+
+            BoardNodes.Add(temp);
+
+            if (!solveAll && temp.IsFinal()) _breakAll = true;
+
+            temp.GetChildren();
+            if (temp.MyChildren is null) continue;
+
+            temp.MyChildren.ForEach(child =>
+            {
+                NodesStack.Push(child);
+            });
+
+        }
     }
 
     public List<List<BoardNode>> FillFinalRoads()
@@ -75,7 +83,7 @@ internal class DFS
         return LBN;
     }
 
-    public void PrintAllStates ()
+    public void PrintAllStates()
     {
         foreach (var item in BoardNodes)
         {
@@ -83,3 +91,26 @@ internal class DFS
         }
     }
 }
+
+
+
+// public void Solve(BoardNode boardNode, bool solveAll)
+// {
+
+//     if (_breakAll) return;
+
+//     if (BoardNodes.Contains(boardNode)) return;
+
+//     BoardNodes.Add(boardNode);
+
+//     if (!solveAll && boardNode.IsFinal()) _breakAll = true;
+
+//     boardNode.GetChildren();
+
+//     if (boardNode.MyChildren is null) return;
+
+//     boardNode.MyChildren.ForEach(child =>
+//     {
+//         Solve(child, solveAll);
+//     });
+// }
