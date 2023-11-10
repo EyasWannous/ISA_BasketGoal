@@ -43,34 +43,6 @@ internal class DFS
         }
     }
 
-    public List<List<BoardNode>> FillFinalRoads()
-    {
-        List<BoardNode> finalStates = GetFinalStates();
-
-        if (!finalStates.Any()) return new();
-
-        List<List<BoardNode>> ALLFinalRoads = new();
-
-        finalStates.ForEach(state =>
-        {
-            BoardNode tempState = state;
-            List<BoardNode> boardNodes = new()
-            {
-                tempState
-            };
-
-            while (tempState.Father is not null)
-            {
-                boardNodes.Add(tempState.Father);
-                tempState = tempState.Father;
-            }
-
-            ALLFinalRoads.Add(boardNodes);
-        });
-
-        return ALLFinalRoads;
-    }
-
     public List<BoardNode> GetFinalStates()
     {
         List<BoardNode> LBN = new();
@@ -83,13 +55,6 @@ internal class DFS
         return LBN;
     }
 
-    public void PrintAllStates()
-    {
-        foreach (var item in BoardNodes)
-        {
-            Console.WriteLine(item);
-        }
-    }
 }
 
 

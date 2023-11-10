@@ -33,7 +33,7 @@ internal class BFS
             BoardNodes.Add(temp);
 
             if (!solveAll && temp.IsFinal()) return;
-            
+
             temp.GetChildren();
 
             if (temp.MyChildren is null) continue;
@@ -44,34 +44,6 @@ internal class BFS
             });
 
         }
-    }
-
-    public List<List<BoardNode>> FillFinalRoads()
-    {
-        List<BoardNode> finalStates = GetFinalStates();
-
-        if (!finalStates.Any()) return new();
-
-        List<List<BoardNode>> ALLFinalRoads = new();
-
-        finalStates.ForEach(state =>
-        {
-            BoardNode tempState = state;
-            List<BoardNode> boardNodes = new()
-            {
-                tempState
-            };
-
-            while (tempState.Father is not null)
-            {
-                boardNodes.Add(tempState.Father);
-                tempState = tempState.Father;
-            }
-
-            ALLFinalRoads.Add(boardNodes);
-        });
-
-        return ALLFinalRoads;
     }
 
     public List<BoardNode> GetFinalStates()
@@ -86,11 +58,4 @@ internal class BFS
         return LBN;
     }
 
-    public void PrintAll()
-    {
-        foreach (var item in BoardNodes)
-        {
-            Console.WriteLine(item);
-        }
-    }
 }
