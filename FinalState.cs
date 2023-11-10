@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace ISA_BasketGoal;
 
-class FinalStates : BoardNode
+class FinalState : BoardNode
 {
     public List<BoardNode>? RoadToFinal { get; set; }
-    public FinalStates(BoardNode boardNode) : base(boardNode) { }
+    public FinalState(BoardNode boardNode) : base(boardNode) { }
 
     public void FillMyRoad()
     {

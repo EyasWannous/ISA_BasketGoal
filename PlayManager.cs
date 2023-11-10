@@ -15,7 +15,7 @@ internal class PlayManager
     private DFS _dFS = new();
     private UniformCost _uni = new();
     private List<BoardNode> _finalStates = new();
-    private List<FinalStates> _finals = new();
+    private List<FinalState> _finals = new();
     private BoardNode? _boardNode;
     public PlayManager(string playMode)
     {
