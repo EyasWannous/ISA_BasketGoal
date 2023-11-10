@@ -21,38 +21,6 @@ internal class PlayManager
     {
         _playMode = playMode;
     }
-    public bool ChooseAPhase(string number)
-    {
-        return number switch
-        {
-            "1" => BuildPhase(1),
-            "2" => BuildPhase(2),
-            "3" => BuildPhase(3),
-            "4" => BuildPhase(4),
-            "5" => BuildPhase(5),
-            "6" => BuildPhase(6),
-            "7" => BuildPhase(7),
-            "8" => BuildPhase(8),
-            "9" => BuildPhase(9),
-            "10" => BuildPhase(10),
-            "11" => BuildPhase(11),
-            "12" => BuildPhase(12),
-            "13" => BuildPhase(13),
-            "14" => BuildPhase(14),
-            "15" => BuildPhase(15),
-            "16" => BuildPhase(16),
-            "17" => BuildPhase(17),
-            "18" => BuildPhase(18),
-            "19" => BuildPhase(19),
-            "20" => BuildPhase(20),
-            "21" => BuildPhase(21),
-            "22" => BuildPhase(22),
-            "23" => BuildPhase(23),
-            "24" => BuildPhase(24),
-            "25" => BuildPhase(25),
-            _ => false,
-        };
-    }
 
     public bool BuildPhase(int phaseNumber)
     {
@@ -151,5 +119,53 @@ internal class PlayManager
 
         Console.WriteLine($"Elapsed time is : {elapsed:N1}s");
         Console.WriteLine($"Elapsed time is : {elapsedMS:N1}ms");
+    }
+
+    public bool ChooseAPhase(string number)
+    {
+        return number switch
+        {
+            "1" => BuildPhase(1),
+            "2" => BuildPhase(2),
+            "3" => BuildPhase(3),
+            "4" => BuildPhase(4),
+            "5" => BuildPhase(5),
+            "6" => BuildPhase(6),
+            "7" => BuildPhase(7),
+            "8" => BuildPhase(8),
+            "9" => BuildPhase(9),
+            "10" => BuildPhase(10),
+            "11" => BuildPhase(11),
+            "12" => BuildPhase(12),
+            "13" => BuildPhase(13),
+            "14" => BuildPhase(14),
+            "15" => BuildPhase(15),
+            "16" => BuildPhase(16),
+            "17" => BuildPhase(17),
+            "18" => BuildPhase(18),
+            "19" => BuildPhase(19),
+            "20" => BuildPhase(20),
+            "21" => BuildPhase(21),
+            "22" => BuildPhase(22),
+            "23" => BuildPhase(23),
+            "24" => BuildPhase(24),
+            "25" => BuildPhase(25),
+            "26" => BuildPhase(26),
+            "27" => BuildPhase(27),
+            "28" => BuildPhase(28),
+            "29" => BuildPhase(29),
+            "30" => BuildPhase(30),
+            "31" => BuildPhase(31),
+            "32" => BuildPhase(32),
+            "33" => BuildPhase(33),
+            "34" => BuildPhase(34),
+            "35" => BuildPhase(35),
+            "36" => BuildPhase(36),
+            "37" => BuildPhase(37),
+            "38" => BuildPhase(38),
+            "39" => BuildPhase(39),
+            "40" => BuildPhase(40),
+            _ => false,
+        };
     }
 }
