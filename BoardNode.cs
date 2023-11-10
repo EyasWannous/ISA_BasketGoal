@@ -26,7 +26,7 @@ internal class BoardNode : Board
 
     public void GetChildren()
     {
-        List<Board> boards = this.MovePossiable();
+        List<Board> boards = this.MovePossible();
 
         if (!boards.Any()) return;
 

@@ -80,7 +80,7 @@ internal class Board
             'A' or 'a' => MoveLeft(),
             'M' or 'm' => CheckMoves().Item1,
             'H' or 'h' => CheckMovesUsingHashSet().Item1,
-            'P' or 'p' => PrintPossiableMoves(),
+            'P' or 'p' => PrintPossibleMoves(),
             _ => false,
         };
     }
@@ -273,7 +273,7 @@ internal class Board
         return (thereIsMove, temp);
     }
 
-    protected bool PrintPossiableMoves()
+    protected bool PrintPossibleMoves()
     {
         if (this.IsFinal()) return false;
 
@@ -415,7 +415,7 @@ internal class Board
         return false;
     }
 
-    public List<Board> MovePossiable()
+    public List<Board> MovePossible()
     {
         List<Board> boards = new();
 
