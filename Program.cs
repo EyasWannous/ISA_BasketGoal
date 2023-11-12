@@ -11,12 +11,13 @@ while (Key != 'q' && Key != 'Q')
     string? ChoosenPhase = "";
 
     string ChoosenPhasepattern = @"([1-9]|1[0-9]|2[0-9])";
-    string Keypattern = @"[1-6]";
+    string Keypattern = @"[1-8]";
 
 
     Console.WriteLine();
     Console.WriteLine("[1]: Manual Mode (User)\r\n[2]: Auto Mode Solve All (DFS)\r\n[3]: Auto Mode Solve All (BFS)");
     Console.WriteLine("[4]: Auto Mode Solve One (DFS)\r\n[5]: Auto Mode Solve One (BFS)\r\n[6]: Auto Mode (Unicost)");
+    Console.WriteLine("[7]: Auto Mode (HillClimbing)\r\n[8]: Auto Mode (AAsterisk)");
     Console.WriteLine("Please choose one (or \"q\" to quit)");
     Console.WriteLine();
 
@@ -97,6 +98,16 @@ while (Key != 'q' && Key != 'Q')
     else if (Key == '6')
     {
         PlayManager play = new("UNICOST");
+        play.ChooseAPhase(ChoosenPhase!);
+    }
+    else if (Key == '7')
+    {
+        PlayManager play = new("HillClimbing");
+        play.ChooseAPhase(ChoosenPhase!);
+    }
+    else if (Key == '8')
+    {
+        PlayManager play = new("AAsterisk");
         play.ChooseAPhase(ChoosenPhase!);
     }
 

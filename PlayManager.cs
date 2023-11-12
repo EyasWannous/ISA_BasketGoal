@@ -13,7 +13,9 @@ internal class PlayManager
     private System.Diagnostics.Stopwatch? _watch;
     private BFS _bFS = new();
     private DFS _dFS = new();
-    private UniformCost _uni = new();
+    private UCS _uCS = new();
+    private HillClimbing _hC = new();
+    private AAsterisk _aA = new();
     private List<BoardNode> _finalStates = new();
     private List<FinalState> _finals = new();
     private BoardNode? _boardNode;
@@ -39,7 +41,6 @@ internal class PlayManager
             this.FillFinal();
             PrintAllRoadsToFinalStates(_dFS.BoardNodes);
             _watch.Stop();
-            //_dFS.PrintAllStates();
         }
         else if (_playMode == "BFS")
         {
@@ -68,13 +69,31 @@ internal class PlayManager
             PrintAllRoadsToFinalStates(_bFS.BoardNodes);
             _watch.Stop();
         }
-        else if (_playMode == "UNICOST")
+        else if (_playMode == "HillClimbing")
         {
             _watch = System.Diagnostics.Stopwatch.StartNew();
-            _uni.Solve(_boardNode);
-            _finalStates = _uni.GetFinalStates();
+            _hC.Solve(_boardNode);
+            _finalStates = _hC.GetFinalStates();
             this.FillFinal();
-            PrintAllRoadsToFinalStates(_uni.BoardNodes);
+            PrintAllRoadsToFinalStates(_hC.BoardNodes);
+            _watch.Stop();
+        }
+        else if( _playMode == "UNICOST")
+        {
+            _watch = System.Diagnostics.Stopwatch.StartNew();
+            _uCS.Solve(_boardNode);
+            _finalStates = _uCS.GetFinalStates();
+            this.FillFinal();
+            PrintAllRoadsToFinalStates(_uCS.BoardNodes);
+            _watch.Stop();
+        }
+        else if (_playMode == "AAsterisk")
+        {
+            _watch = System.Diagnostics.Stopwatch.StartNew();
+            _aA.Solve(_boardNode);
+            _finalStates = _aA.GetFinalStates();
+            this.FillFinal();
+            PrintAllRoadsToFinalStates(_aA.BoardNodes);
             _watch.Stop();
         }
 
