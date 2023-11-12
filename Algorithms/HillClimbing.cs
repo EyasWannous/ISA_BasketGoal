@@ -6,15 +6,15 @@ using System.Threading.Tasks;
 
 namespace ISA_BasketGoal.Algorithms;
 
-internal class UniformCost
+internal class HillClimbing
 {
     public HashSet<BoardNode> BoardNodes { get; set; } = new();
 
     public PriorityQueue<BoardNode, int> NodesQueue { get; set; } = new();
 
-    public UniformCost() { }
+    public HillClimbing() { }
 
-    public UniformCost(BoardNode boardNode) => BoardNodes.Add(boardNode);
+    public HillClimbing(BoardNode boardNode) => BoardNodes.Add(boardNode);
 
     public void Solve(BoardNode boardNode)
     {
