@@ -19,8 +19,8 @@ internal class UserPlayMode
         Console.WriteLine(MyBoard);
         Console.WriteLine();
         Console.WriteLine("Press {'W' 'S' 'A' 'D'} To Move.");
-        Console.WriteLine("Press 'M' To See Possialbe Moves.");
-        Console.WriteLine("Press 'P' To Print Board After Every Possialbe Moves.");
+        Console.WriteLine("Press 'M' To See Possible Moves.");
+        Console.WriteLine("Press 'P' To Print Board After Every Possible Moves.");
         Console.WriteLine("Press 'Q' To Quit!");
 
         char Key = ' ';
@@ -36,7 +36,7 @@ internal class UserPlayMode
             if (MyBoard.Move(Key))
             {
                 if (!temp.Equals(MyBoard))
-                { 
+                {
                     Console.WriteLine("Current State :\n");
                     Console.WriteLine(MyBoard);
                     counter++;
