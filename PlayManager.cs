@@ -78,7 +78,7 @@ internal class PlayManager
             PrintAllRoadsToFinalStates(_hC.BoardNodes);
             _watch.Stop();
         }
-        else if( _playMode == "UNICOST")
+        else if (_playMode == "UNICOST")
         {
             _watch = System.Diagnostics.Stopwatch.StartNew();
             _uCS.Solve(_boardNode);

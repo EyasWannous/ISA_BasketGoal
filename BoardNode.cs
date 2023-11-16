@@ -39,7 +39,6 @@ internal class BoardNode : Board
 
     }
 
-
 }
 
 

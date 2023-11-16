@@ -406,4 +406,21 @@ internal class Mistakes
     //}
 
     //newPlace += move;
+
+    public void UpdateMovedElementMistake() { }
+    // var obj = BallPosition.FirstOrDefault(x => x == oldP);
+    // var obj2 = BallPosition.IndexOf(oldP);
+    // Console.WriteLine(obj);
+    // Console.WriteLine(obj2);
+
+    // int index = 0;
+
+    // for (int i = 0; i < BallPosition.Count; i++)
+    // {
+    //     if (BallPosition[i] == oldP)
+    //     {
+    //         index = i;
+    //         break;
+    //     }
+    // }
 }
