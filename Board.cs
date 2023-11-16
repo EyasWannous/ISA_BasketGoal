@@ -119,7 +119,8 @@ internal class Board
 
                 Position obstacle = GetFirstObstacleInRoad(new(i, j), Moves._downMove);
 
-                if (!didEat && !CheckCollisionWithSides(obstacle)
+                if (PlayBoard[i, j] != '■' &&
+                    !didEat && !CheckCollisionWithSides(obstacle)
                     && PlayBoard[obstacle.Row, obstacle.Column] == 'V')
                 {
                     didEat = true;
@@ -208,7 +209,6 @@ internal class Board
         if (!this.Equals(board)) temp += " A,";
 
         temp += " } \n";
-        // Console.WriteLine(temp);
 
         return (true, temp);
     }
@@ -268,7 +268,6 @@ internal class Board
         }
 
         temp += " } \n";
-        // Console.WriteLine(temp);
 
         return (thereIsMove, temp);
     }
@@ -319,19 +318,14 @@ internal class Board
             }
         }
 
-        // 5 8 11 14
-
         return true;
     }
 
     protected bool CheckCollisionWithSides(Position element)
     {
-        // There is A Collision
-        if (element.Row < 0 || element.Column < 0
+        return element.Row < 0 || element.Column < 0
         || element.Row >= RowNumbers
-        || element.Column >= ColumnNumbers) return true;
-
-        return false;
+        || element.Column >= ColumnNumbers;
     }
 
     protected Position GetFirstObstacleInRoad(Position element, Position move)
@@ -356,35 +350,13 @@ internal class Board
     {
         if (moved == 'O')
         {
-            int index = 0;
-
-            for (int i = 0; i < BallPosition.Count; i++)
-            {
-                if (BallPosition[i].Row == oldP.Row && BallPosition[i].Column == oldP.Column)
-                {
-                    index = i;
-                    break;
-                }
-            }
-
-            BallPosition[index]
+            BallPosition[BallPosition.IndexOf(oldP)]
                 = new(newP.Row, newP.Column);
         }
 
         else if (moved == '■')
         {
-            int index = 0;
-
-            for (int i = 0; i < MovingWalls!.Count; i++)
-            {
-                if (MovingWalls![i].Row == oldP.Row && MovingWalls![i].Column == oldP.Column)
-                {
-                    index = i;
-                    break;
-                }
-            }
-
-            MovingWalls![index]
+            MovingWalls![MovingWalls.IndexOf(oldP)]
                 = new(newP.Row, newP.Column);
         }
 
