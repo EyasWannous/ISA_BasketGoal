@@ -13,10 +13,6 @@ internal class DFS
 
     public Stack<BoardNode> NodesStack { get; set; } = new();
 
-    public DFS() { }
-
-    public DFS(BoardNode boardNode) => BoardNodes.Add(boardNode);
-
     public void Solve(BoardNode boardNode, bool solveAll)
     {
         NodesStack.Push(boardNode);

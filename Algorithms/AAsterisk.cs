@@ -12,10 +12,6 @@ internal class AAsterisk
 
     public PriorityQueue<BoardNode, int> NodesQueue { get; set; } = new();
 
-    public AAsterisk() { }
-
-    public AAsterisk(BoardNode boardNode) => BoardNodes.Add(boardNode);
-
     public void Solve(BoardNode boardNode)
     {
         int count = 0;

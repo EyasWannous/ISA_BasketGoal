@@ -12,14 +12,6 @@ internal class BFS
 
     public Queue<BoardNode> NodesQueue { get; set; } = new();
 
-    public BFS() { }
-
-    public BFS(BoardNode boardNode)
-    {
-        BoardNodes.Add(boardNode);
-        NodesQueue.Enqueue(boardNode);
-    }
-
     public void Solve(BoardNode boardNode, bool solveAll)
     {
         NodesQueue.Enqueue(boardNode);

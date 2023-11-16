@@ -12,10 +12,6 @@ internal class HillClimbing
 
     public PriorityQueue<BoardNode, int> NodesQueue { get; set; } = new();
 
-    public HillClimbing() { }
-
-    public HillClimbing(BoardNode boardNode) => BoardNodes.Add(boardNode);
-
     public void Solve(BoardNode boardNode)
     {
         NodesQueue.Enqueue(boardNode, boardNode.BallPosition.Count);

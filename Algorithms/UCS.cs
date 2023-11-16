@@ -12,10 +12,6 @@ internal class UCS
 
     public PriorityQueue<BoardNode, int> NodesQueue { get; set; } = new();
 
-    public UCS() { }
-
-    public UCS(BoardNode boardNode) => BoardNodes.Add(boardNode);
-
     public void Solve(BoardNode boardNode)
     {
         int count = 0;
@@ -56,6 +52,5 @@ internal class UCS
 
         return LBN;
     }
-
 
 }
