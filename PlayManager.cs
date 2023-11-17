@@ -14,7 +14,9 @@ internal class PlayManager
     private BFS _bFS = new();
     private DFS _dFS = new();
     private UCS _uCS = new();
-    private HillClimbing _hC = new();
+    private HillClimbing_1 _hC_1 = new();
+    private HillClimbing_2 _hC_2 = new();
+    private HillClimbing_3 _hC_3 = new();
     private AAsterisk _aA = new();
     private List<BoardNode> _finalStates = new();
     private List<FinalState> _finals = new();
@@ -28,74 +30,55 @@ internal class PlayManager
     {
         _boardNode = PhaseManager.LoadPhase(phaseNumber);
 
-        if (_playMode == "User")
+        return _playMode switch
         {
-            UserPlayMode UPM = new(_boardNode);
-            UPM.Play();
-        }
-        else if (_playMode == "DFS")
-        {
-            _watch = System.Diagnostics.Stopwatch.StartNew();
-            _dFS.Solve(_boardNode, true);
-            _finalStates = _dFS.GetFinalStates();
-            this.FillFinal();
-            PrintAllRoadsToFinalStates(_dFS.BoardNodes);
-            _watch.Stop();
-        }
-        else if (_playMode == "BFS")
-        {
-            _watch = System.Diagnostics.Stopwatch.StartNew();
-            _bFS.Solve(_boardNode, true);
-            _finalStates = _bFS.GetFinalStates();
-            this.FillFinal();
-            PrintAllRoadsToFinalStates(_bFS.BoardNodes);
-            _watch.Stop();
-        }
-        else if (_playMode == "DFSone")
-        {
-            _watch = System.Diagnostics.Stopwatch.StartNew();
-            _dFS.Solve(_boardNode, false);
-            _finalStates = _dFS.GetFinalStates();
-            this.FillFinal();
-            PrintAllRoadsToFinalStates(_dFS.BoardNodes);
-            _watch.Stop();
-        }
-        else if (_playMode == "BFSone")
-        {
-            _watch = System.Diagnostics.Stopwatch.StartNew();
-            _bFS.Solve(_boardNode, false);
-            _finalStates = _bFS.GetFinalStates();
-            this.FillFinal();
-            PrintAllRoadsToFinalStates(_bFS.BoardNodes);
-            _watch.Stop();
-        }
-        else if (_playMode == "HillClimbing")
-        {
-            _watch = System.Diagnostics.Stopwatch.StartNew();
-            _hC.Solve(_boardNode);
-            _finalStates = _hC.GetFinalStates();
-            this.FillFinal();
-            PrintAllRoadsToFinalStates(_hC.BoardNodes);
-            _watch.Stop();
-        }
-        else if (_playMode == "UNICOST")
-        {
-            _watch = System.Diagnostics.Stopwatch.StartNew();
-            _uCS.Solve(_boardNode);
-            _finalStates = _uCS.GetFinalStates();
-            this.FillFinal();
-            PrintAllRoadsToFinalStates(_uCS.BoardNodes);
-            _watch.Stop();
-        }
-        else if (_playMode == "AAsterisk")
-        {
-            _watch = System.Diagnostics.Stopwatch.StartNew();
-            _aA.Solve(_boardNode);
-            _finalStates = _aA.GetFinalStates();
-            this.FillFinal();
-            PrintAllRoadsToFinalStates(_aA.BoardNodes);
-            _watch.Stop();
-        }
+            "User" => PlayerMode(),
+            "DFS" => SolveNoCostAlgorithm(_dFS, true),
+            "BFS" => SolveNoCostAlgorithm(_bFS, true),
+            "DFSone" => SolveNoCostAlgorithm(_dFS, false),
+            "BFSone" => SolveNoCostAlgorithm(_bFS, false),
+            "UNICOST" => SolveCostAlgorithm(_uCS),
+            "HillClimbing_1" => SolveCostAlgorithm(_hC_1),
+            "HillClimbing_2" => SolveCostAlgorithm(_hC_2),
+            "HillClimbing_3" => SolveCostAlgorithm(_hC_3),
+            "AAsterisk" => SolveCostAlgorithm(_aA),
+            _ => false,
+        };
+    }
+
+    private bool PlayerMode()
+    {
+        UserPlayMode UPM = new(_boardNode!);
+        UPM.Play();
+        return true;
+    }
+
+    private bool SolveCostAlgorithm(ICostAlgorithm algorithm)
+    {
+        _watch = System.Diagnostics.Stopwatch.StartNew();
+
+        algorithm.Solve(_boardNode!);
+        _finalStates = algorithm.GetFinalStates();
+
+        FillFinal();
+        PrintAllRoadsToFinalStates(algorithm.BoardNodes);
+
+        _watch.Stop();
+
+        return true;
+    }
+
+    private bool SolveNoCostAlgorithm(INoCostAlgorithm algorithm, bool solveAll)
+    {
+        _watch = System.Diagnostics.Stopwatch.StartNew();
+
+        algorithm.Solve(_boardNode!, solveAll);
+        _finalStates = algorithm.GetFinalStates();
+
+        FillFinal();
+        PrintAllRoadsToFinalStates(algorithm.BoardNodes);
+
+        _watch.Stop();
 
         return true;
     }
