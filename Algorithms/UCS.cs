@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ISA_BasketGoal.Algorithms;
 
-internal class UCS
+internal class UCS : ICostAlgorithm
 {
     public HashSet<BoardNode> BoardNodes { get; set; } = new();
 

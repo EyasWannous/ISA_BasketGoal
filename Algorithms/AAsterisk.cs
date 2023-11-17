@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ISA_BasketGoal.Algorithms;
 
-internal class AAsterisk
+internal class AAsterisk : ICostAlgorithm
 {
     public HashSet<BoardNode> BoardNodes { get; set; } = new();
 
@@ -52,4 +52,5 @@ internal class AAsterisk
 
         return LBN;
     }
+
 }

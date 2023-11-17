@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ISA_BasketGoal.Algorithms;
 
-internal class BFS
+internal class BFS : INoCostAlgorithm
 {
     public HashSet<BoardNode> BoardNodes { get; set; } = new();
 
