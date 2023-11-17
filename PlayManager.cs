@@ -21,10 +21,7 @@ internal class PlayManager
     private List<BoardNode> _finalStates = new();
     private List<FinalState> _finals = new();
     private BoardNode? _boardNode;
-    public PlayManager(string playMode)
-    {
-        _playMode = playMode;
-    }
+    public PlayManager(string playMode) => _playMode = playMode;
 
     public bool BuildPhase(int phaseNumber)
     {
