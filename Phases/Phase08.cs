@@ -8,13 +8,7 @@ namespace ISA_BasketGoal.Phases;
 
 internal class Phase08 : PhaseBase
 {
-    public int Columns;
-    public int Rows;
-    public char[,] PlayB;
-    public Position BasketP;
-    public Position? Coin;
-    public List<Position> BallP;
-    public List<Position>? Walls;
+
 
     public Phase08()
     {
