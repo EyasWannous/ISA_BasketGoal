@@ -64,6 +64,6 @@ internal class Phase29 : PhaseBase
 
     public override BoardNode Load()
     {
-        return new BoardNode(new Board(BasketP, BallP, Walls, Coin, Columns, Rows, PlayB, MovingW));
+        return new BoardNode(new Board(BasketP!, BallP!, Walls, Coin, Columns, Rows, PlayB!, MovingW));
     }
 }
