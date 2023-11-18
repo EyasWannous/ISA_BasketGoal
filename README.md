@@ -1,8 +1,7 @@
 # ISA_BasketGoal
 
-Intelligent Search Algorithms Task in my Faculty.
+**Intelligent Search Algorithms** Task in my Faculty.
 
-This task is about to make the "Basket Goal" game in any programming language without GUI,
-and play with it using Terminal, and implement ISA to solve it.
+The task is make the **"Basket Goal"** game in any programming language (I'm using **C#**) without GUI, play with it using Terminal, and implement ISA to solve it.
 
-This is the link of the "Basket Goal" game : https://www.puzzleplayground.com/basket_goal
+link of the **"Basket Goal""** game : **https://www.puzzleplayground.com/basket_goal**
