@@ -63,6 +63,7 @@ internal class Board
         if (board.MovingWalls is not null) MovingWalls = board.MovingWalls.ToList();
     }
 
+
     public char this[int indexOne, int indexTwo]
     {
         get { return PlayBoard[indexOne, indexTwo]; }
@@ -93,15 +94,15 @@ internal class Board
             {
                 if (PlayBoard[i, j] == ' ' || PlayBoard[i, j] == 'X') continue;
 
-                Position obstacle = GetFirstObstacleInRoad(new(i, j), Moves._upMove);
+                Position obstacle = GetFirstObstacleInRoad(new(i, j), Moves._up);
 
                 if (PlayBoard[i, j] == 'V') obstacle = Eat(obstacle);
 
                 var temp = PlayBoard[i, j];
                 PlayBoard[i, j] = ' ';
-                PlayBoard[obstacle.Row - Moves._upMove.Row, j] = temp;
+                PlayBoard[obstacle.Row - Moves._up.Row, j] = temp;
 
-                UpdateMovedElement(temp, new(i, j), new(obstacle.Row - Moves._upMove.Row, j));
+                UpdateMovedElement(temp, new(i, j), new(obstacle.Row - Moves._up.Row, j));
             }
         }
 
@@ -117,7 +118,7 @@ internal class Board
             {
                 if (PlayBoard[i, j] == ' ' || PlayBoard[i, j] == 'X') continue;
 
-                Position obstacle = GetFirstObstacleInRoad(new(i, j), Moves._downMove);
+                Position obstacle = GetFirstObstacleInRoad(new(i, j), Moves._down);
 
                 if (PlayBoard[i, j] != '■' &&
                     !didEat && !CheckCollisionWithSides(obstacle)
@@ -130,9 +131,9 @@ internal class Board
 
                 char temp = PlayBoard[i, j];
                 PlayBoard[i, j] = ' ';
-                PlayBoard[obstacle.Row - Moves._downMove.Row, j] = temp;
+                PlayBoard[obstacle.Row - Moves._down.Row, j] = temp;
 
-                UpdateMovedElement(temp, new(i, j), new(obstacle.Row - Moves._downMove.Row, j));
+                UpdateMovedElement(temp, new(i, j), new(obstacle.Row - Moves._down.Row, j));
             }
         }
 
@@ -147,13 +148,13 @@ internal class Board
             {
                 if (PlayBoard[i, j] == ' ' || PlayBoard[i, j] == 'X') continue;
 
-                Position obstacle = GetFirstObstacleInRoad(new(i, j), Moves._leftMove);
+                Position obstacle = GetFirstObstacleInRoad(new(i, j), Moves._left);
 
                 char temp = PlayBoard[i, j];
                 PlayBoard[i, j] = ' ';
-                PlayBoard[i, obstacle.Column - Moves._leftMove.Column] = temp;
+                PlayBoard[i, obstacle.Column - Moves._left.Column] = temp;
 
-                UpdateMovedElement(temp, new(i, j), new(i, obstacle.Column - Moves._leftMove.Column));
+                UpdateMovedElement(temp, new(i, j), new(i, obstacle.Column - Moves._left.Column));
             }
         }
 
@@ -168,13 +169,13 @@ internal class Board
             {
                 if (PlayBoard[i, j] == ' ' || PlayBoard[i, j] == 'X') continue;
 
-                Position obstacle = GetFirstObstacleInRoad(new(i, j), Moves._rightMove);
+                Position obstacle = GetFirstObstacleInRoad(new(i, j), Moves._right);
 
                 char temp = PlayBoard[i, j];
                 PlayBoard[i, j] = ' ';
-                PlayBoard[i, obstacle.Column - Moves._rightMove.Column] = temp;
+                PlayBoard[i, obstacle.Column - Moves._right.Column] = temp;
 
-                UpdateMovedElement(temp, new(i, j), new(i, obstacle.Column - Moves._rightMove.Column));
+                UpdateMovedElement(temp, new(i, j), new(i, obstacle.Column - Moves._right.Column));
             }
         }
 
@@ -285,37 +286,38 @@ internal class Board
 
         for (int i = 0; i < temp.Length; i++)
         {
-            if (temp[i] == 'W')
+
+            switch (temp[i])
             {
-                Console.WriteLine("Move Up Using 'W' :\n");
-                Board board = new(this);
-                board.MoveUp();
-                Console.WriteLine(board);
+                case 'W':
+                    Write.MoveUp();
+                    Board Up = new(this);
+                    Up.MoveUp();
+                    Write.Board(Up);
+                    break;
+
+                case 'S':
+                    Write.MoveDown();
+                    Board Down = new(this);
+                    Down.MoveDown();
+                    Write.Board(Down);
+                    break;
+
+                case 'A':
+                    Write.MoveLeft();
+                    Board Left = new(this);
+                    Left.MoveLeft();
+                    Write.Board(Left);
+                    break;
+
+                case 'D':
+                    Write.MoveRight();
+                    Board Right = new(this);
+                    Right.MoveRight();
+                    Write.Board(Right);
+                    break;
             }
 
-            else if (temp[i] == 'S')
-            {
-                Console.WriteLine("Move Down Using 'S' :\n");
-                Board board = new(this);
-                board.MoveDown();
-                Console.WriteLine(board);
-            }
-
-            else if (temp[i] == 'D')
-            {
-                Console.WriteLine("Move Right Using 'D' :\n");
-                Board board = new(this);
-                board.MoveRight();
-                Console.WriteLine(board);
-            }
-
-            else if (temp[i] == 'A')
-            {
-                Console.WriteLine("Move Lefts Using 'A' :\n");
-                Board board = new(this);
-                board.MoveLeft();
-                Console.WriteLine(board);
-            }
         }
 
         return true;
@@ -377,7 +379,7 @@ internal class Board
 
         PlayBoard[obstacle.Row, obstacle.Column] = ' ';
 
-        return obstacle + Moves._upMove;
+        return obstacle + Moves._up;
     }
 
     public bool IsFinal()

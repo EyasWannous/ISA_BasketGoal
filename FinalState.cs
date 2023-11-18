@@ -32,7 +32,7 @@ class FinalState : BoardNode
 
         RoadToFinal.ForEach(state =>
         {
-            Console.WriteLine(state);
+            Write.Board(state);
         });
 
         return RoadToFinal.Count;

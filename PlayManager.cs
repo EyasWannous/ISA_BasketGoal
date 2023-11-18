@@ -96,28 +96,15 @@ internal class PlayManager
             state.FillMyRoad();
             int count = state.PrintRoadToFinal();
 
-            Console.WriteLine();
-            Console.WriteLine($"\tNumber of States : {count}                   ");
-            Console.WriteLine("================================================");
-            Console.WriteLine($"\tNumber of this Final State : {counter}       ");
-            Console.WriteLine("================================================");
-            Console.WriteLine();
+            Write.EndOfState(count, counter);
 
             counter++;
         });
-        Console.WriteLine();
-        Console.WriteLine($"Statistics :");
-        Console.WriteLine();
-
-        Console.WriteLine();
-        Console.WriteLine($"Number of States : {hashBoardNode.Count}");
-        Console.WriteLine();
 
         double elapsed = _watch!.Elapsed.TotalSeconds;
         long elapsedMS = _watch!.ElapsedMilliseconds;
 
-        Console.WriteLine($"Elapsed time is : {elapsed:N1}s");
-        Console.WriteLine($"Elapsed time is : {elapsedMS:N1}ms");
+        Write.Statistics(hashBoardNode.Count, elapsed, elapsedMS);
     }
 
     public bool ChooseAPhase(string number)

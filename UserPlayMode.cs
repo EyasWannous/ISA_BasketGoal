@@ -15,13 +15,8 @@ internal class UserPlayMode
 
     public void Play()
     {
-        Console.WriteLine();
-        Console.WriteLine(MyBoard);
-        Console.WriteLine();
-        Console.WriteLine("Press {'W' 'S' 'A' 'D'} To Move.");
-        Console.WriteLine("Press 'M' To See Possible Moves.");
-        Console.WriteLine("Press 'P' To Print Board After Every Possible Moves.");
-        Console.WriteLine("Press 'Q' To Quit!");
+        Write.Board(MyBoard);
+        Write.UsableKeys();
 
         char Key = ' ';
         int counter = 0;
@@ -37,16 +32,15 @@ internal class UserPlayMode
             {
                 if (!temp.Equals(MyBoard))
                 {
-                    Console.WriteLine("Current State :\n");
-                    Console.WriteLine(MyBoard);
+                    Write.CurrentState(MyBoard);
                     counter++;
                 }
             }
         }
 
-        if (MyBoard.IsFinal()) Console.WriteLine($"Congratulations, You Won in {counter} Moves");
+        if (MyBoard.IsFinal()) Write.CountStates(counter);
 
-        else Console.WriteLine("We Are Sorry, You Left");
+        else Write.Sorry();
     }
 
 }
