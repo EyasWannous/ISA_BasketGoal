@@ -2,7 +2,7 @@
 
 **Intelligent Search Algorithms** Task in my Faculty.
 
-The task is to make the **"Basket Goal"** game in any programming language (I'm using **C#**) without GUI, play with it using Console (Terminal), and implement **ISA** to solve all phases in it automatically.
+The task is to make the **"Basket Goal"** game in any programming language (I'm using **C#**) without **GUI**, play with it using **Console (Terminal)**, and implement **ISA** to solve all phases in it automatically.
 
 ## BasketGoal Puzzle
 
