@@ -1,4 +1,6 @@
 ﻿using ISA_BasketGoal.Algorithms;
+using ISA_BasketGoal.Algorithms.AAsterisks;
+using ISA_BasketGoal.Algorithms.HillClimbings;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,7 +19,9 @@ internal class PlayManager
     private HillClimbing_1 _hC_1 = new();
     private HillClimbing_2 _hC_2 = new();
     private HillClimbing_3 _hC_3 = new();
-    private AAsterisk _aA = new();
+    private AAsterisk_1 _aA_1 = new();
+    private AAsterisk_2 _aA_2 = new();
+    private AAsterisk_3 _aA_3 = new();
     private List<BoardNode> _finalStates = new();
     private List<FinalState> _finals = new();
     private BoardNode? _boardNode;
@@ -38,7 +42,9 @@ internal class PlayManager
             "HillClimbing_1" => SolveCostAlgorithm(_hC_1),
             "HillClimbing_2" => SolveCostAlgorithm(_hC_2),
             "HillClimbing_3" => SolveCostAlgorithm(_hC_3),
-            "AAsterisk" => SolveCostAlgorithm(_aA),
+            "AAsterisk_1" => SolveCostAlgorithm(_aA_1),
+            "AAsterisk_2" => SolveCostAlgorithm(_aA_2),
+            "AAsterisk_3" => SolveCostAlgorithm(_aA_3),
             _ => false,
         };
     }
