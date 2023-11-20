@@ -14,6 +14,8 @@ link of the **"Basket Goal"** game : **https://www.puzzleplayground.com/basket_g
 
 You need to have **.NET SDK** 7 or higher
 
+Then clone the repo and run it.
+
 <a target="_blank" align="center" href="https://dotnet.microsoft.com/en-us/download">**Download .NET**</a>
 
 <!-- Download <a target="_blank" align="center" href="https://dotnet.microsoft.com/en-us/download/dotnet/7.0">**.NET 7**</a> -->
