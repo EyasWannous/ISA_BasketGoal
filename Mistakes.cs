@@ -423,4 +423,12 @@ internal class Mistakes
     //         break;
     //     }
     // }
+
+    public void RegexMistake() { }
+    // string Keypattern = @"[0-12]";
+    // while (!Regex.IsMatch(Key ??= " ", Keypattern) && Key != "q")
+    // {
+    //     Write.InvalidKey();
+    //     Key = Console.ReadLine()!;
+    // }
 }
