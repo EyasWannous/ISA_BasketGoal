@@ -25,4 +25,17 @@ internal static class CostFunctions
         return boardNode.RowNumbers - boardNode.BasketPosition.Row;
     }
 
+    public static int Distance(BoardNode boardNode)
+    {
+        int cost = 1_000_000_000;
+        boardNode.BallPosition.ForEach(ball =>
+        {
+            cost = Math.Min(
+                    cost,
+                    Math.Abs(boardNode.BasketPosition.Row - ball.Row)
+                    + Math.Abs(boardNode.BasketPosition.Column - ball.Column)
+                );
+        });
+        return cost;
+    }
 }
