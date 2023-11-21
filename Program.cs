@@ -12,7 +12,6 @@ while (Key != "quit()")
     bool isValidInput = false;
 
     Write.PlayMode();
-    Write.ChooseOne();
 
     Key = Console.ReadLine()!;
     Console.WriteLine();
@@ -52,9 +51,11 @@ while (Key != "quit()")
         "7" => new("HillClimbing_1"),
         "8" => new("HillClimbing_2"),
         "9" => new("HillClimbing_3"),
-        "10" => new("AAsterisk_1"),
-        "11" => new("AAsterisk_2"),
-        "12" => new("AAsterisk_3"),
+        "10" => new("HammingDistance"),
+        "11" => new("AAsterisk_1"),
+        "12" => new("AAsterisk_2"),
+        "13" => new("AAsterisk_3"),
+        "14" => new("AHammingDistance"),
         _ => new("User"),
     };
 

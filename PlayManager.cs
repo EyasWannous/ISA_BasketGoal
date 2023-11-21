@@ -19,9 +19,11 @@ internal class PlayManager
     private HillClimbing_1 _hC_1 = new();
     private HillClimbing_2 _hC_2 = new();
     private HillClimbing_3 _hC_3 = new();
+    private HammingDistance _hD = new();
     private AAsterisk_1 _aA_1 = new();
     private AAsterisk_2 _aA_2 = new();
     private AAsterisk_3 _aA_3 = new();
+    private AHammingDistance _aHD = new();
     private List<BoardNode> _finalStates = new();
     private List<FinalState> _finals = new();
     private BoardNode? _boardNode;
@@ -42,9 +44,11 @@ internal class PlayManager
             "HillClimbing_1" => SolveCostAlgorithm(_hC_1),
             "HillClimbing_2" => SolveCostAlgorithm(_hC_2),
             "HillClimbing_3" => SolveCostAlgorithm(_hC_3),
+            "HammingDistance" => SolveCostAlgorithm(_hD),
             "AAsterisk_1" => SolveCostAlgorithm(_aA_1),
             "AAsterisk_2" => SolveCostAlgorithm(_aA_2),
             "AAsterisk_3" => SolveCostAlgorithm(_aA_3),
+            "AHammingDistance" => SolveCostAlgorithm(_aHD),
             _ => false,
         };
     }
