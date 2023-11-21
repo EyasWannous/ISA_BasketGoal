@@ -105,7 +105,9 @@ internal static class Write
         Console.WriteLine("[7]: Auto Mode (HillClimbing)");
         Console.WriteLine("[8]: Auto Mode (HillClimbing_2)");
         Console.WriteLine("[9]: Auto Mode (HillClimbing_3)");
-        Console.WriteLine("[0]: Auto Mode (AAsterisk)");
+        Console.WriteLine("[10]: Auto Mode (AAsterisk_1)");
+        Console.WriteLine("[11]: Auto Mode (AAsterisk_2)");
+        Console.WriteLine("[12]: Auto Mode (AAsterisk_3)");
         Console.WriteLine();
         ChooseOne();
         Console.WriteLine();
