@@ -16,7 +16,7 @@ internal static class Write
     public static void Repeat()
     {
         Console.WriteLine();
-        Console.WriteLine("To Repeat the game press any Key (or \"q\" to quit)");
+        Console.WriteLine("To Repeat the game press any Key (or \"quit()\" to quit)");
         Console.WriteLine();
     }
 
