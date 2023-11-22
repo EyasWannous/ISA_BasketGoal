@@ -39,18 +39,6 @@ internal class DFS : INoCostAlgorithm
         }
     }
 
-    public List<BoardNode> GetFinalStates()
-    {
-        List<BoardNode> LBN = new();
-
-        foreach (var item in BoardNodes)
-        {
-            if (item.IsFinal()) LBN.Add(item);
-        }
-
-        return LBN;
-    }
-
 }
 
 

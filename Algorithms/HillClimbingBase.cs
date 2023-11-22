@@ -30,19 +30,6 @@ internal abstract class HillClimbingBase : ICostAlgorithm
         }
     }
 
-    public List<BoardNode> GetFinalStates()
-    {
-        List<BoardNode> finalStates = new();
-
-        foreach (var item in BoardNodes)
-        {
-            if (item.IsFinal())
-                finalStates.Add(item);
-        }
-
-        return finalStates;
-    }
-
     private void EnqueueInitialNode(BoardNode node)
     {
         NodesQueue.Enqueue(node, CalculateCost(node));
