@@ -79,8 +79,7 @@ internal class Board
             'S' or 's' => MoveDown(),
             'D' or 'd' => MoveRight(),
             'A' or 'a' => MoveLeft(),
-            'M' or 'm' => CheckMoves().Item1,
-            'H' or 'h' => CheckMovesUsingHashSet().Item1,
+            'M' or 'm' => CheckMoves(true).Item1,
             'P' or 'p' => PrintPossibleMoves(),
             _ => false,
         };
@@ -94,15 +93,15 @@ internal class Board
             {
                 if (PlayBoard[i, j] == ' ' || PlayBoard[i, j] == 'X') continue;
 
-                Position obstacle = GetFirstObstacleInRoad(new(i, j), Moves._up);
+                Position obstacle = GetFirstObstacleInRoad(new(i, j), Moves.Up);
 
                 if (PlayBoard[i, j] == 'V') obstacle = Eat(obstacle);
 
                 var temp = PlayBoard[i, j];
                 PlayBoard[i, j] = ' ';
-                PlayBoard[obstacle.Row - Moves._up.Row, j] = temp;
+                PlayBoard[obstacle.Row - Moves.Up.Row, j] = temp;
 
-                UpdateMovedElement(temp, new(i, j), new(obstacle.Row - Moves._up.Row, j));
+                UpdateMovedElement(temp, new(i, j), new(obstacle.Row - Moves.Up.Row, j));
             }
         }
 
@@ -118,7 +117,7 @@ internal class Board
             {
                 if (PlayBoard[i, j] == ' ' || PlayBoard[i, j] == 'X') continue;
 
-                Position obstacle = GetFirstObstacleInRoad(new(i, j), Moves._down);
+                Position obstacle = GetFirstObstacleInRoad(new(i, j), Moves.Down);
 
                 if (PlayBoard[i, j] != '■' &&
                     !didEat && !CheckCollisionWithSides(obstacle)
@@ -131,9 +130,9 @@ internal class Board
 
                 char temp = PlayBoard[i, j];
                 PlayBoard[i, j] = ' ';
-                PlayBoard[obstacle.Row - Moves._down.Row, j] = temp;
+                PlayBoard[obstacle.Row - Moves.Down.Row, j] = temp;
 
-                UpdateMovedElement(temp, new(i, j), new(obstacle.Row - Moves._down.Row, j));
+                UpdateMovedElement(temp, new(i, j), new(obstacle.Row - Moves.Down.Row, j));
             }
         }
 
@@ -148,13 +147,13 @@ internal class Board
             {
                 if (PlayBoard[i, j] == ' ' || PlayBoard[i, j] == 'X') continue;
 
-                Position obstacle = GetFirstObstacleInRoad(new(i, j), Moves._left);
+                Position obstacle = GetFirstObstacleInRoad(new(i, j), Moves.Left);
 
                 char temp = PlayBoard[i, j];
                 PlayBoard[i, j] = ' ';
-                PlayBoard[i, obstacle.Column - Moves._left.Column] = temp;
+                PlayBoard[i, obstacle.Column - Moves.Left.Column] = temp;
 
-                UpdateMovedElement(temp, new(i, j), new(i, obstacle.Column - Moves._left.Column));
+                UpdateMovedElement(temp, new(i, j), new(i, obstacle.Column - Moves.Left.Column));
             }
         }
 
@@ -169,20 +168,20 @@ internal class Board
             {
                 if (PlayBoard[i, j] == ' ' || PlayBoard[i, j] == 'X') continue;
 
-                Position obstacle = GetFirstObstacleInRoad(new(i, j), Moves._right);
+                Position obstacle = GetFirstObstacleInRoad(new(i, j), Moves.Right);
 
                 char temp = PlayBoard[i, j];
                 PlayBoard[i, j] = ' ';
-                PlayBoard[i, obstacle.Column - Moves._right.Column] = temp;
+                PlayBoard[i, obstacle.Column - Moves.Right.Column] = temp;
 
-                UpdateMovedElement(temp, new(i, j), new(i, obstacle.Column - Moves._right.Column));
+                UpdateMovedElement(temp, new(i, j), new(i, obstacle.Column - Moves.Right.Column));
             }
         }
 
         return true;
     }
 
-    protected (bool, string) CheckMoves()
+    protected (bool, string) CheckMoves(bool print)
     {
         if (this.IsFinal()) return (false, "");
 
@@ -211,66 +210,9 @@ internal class Board
 
         temp += " } \n";
 
+        if (print) Console.WriteLine(temp);
+
         return (true, temp);
-    }
-
-    protected (bool, string) CheckMovesUsingHashSet()
-    {
-        bool thereIsMove = false;
-
-        if (this.IsFinal()) return (thereIsMove, "");
-
-        HashSet<Board> toCheck = new() { this };
-
-        string temp = "\n { ";
-
-        Board board = new(this);
-        board.MoveUp();
-        toCheck.Add(board);
-
-        if (toCheck.Count == 2)
-        {
-            temp += " W,";
-            thereIsMove = true;
-            toCheck.Remove(board);
-        }
-
-        board = new(this);
-        board.MoveDown();
-        toCheck.Add(board);
-
-        if (toCheck.Count == 2)
-        {
-            temp += " S,";
-            thereIsMove = true;
-            toCheck.Remove(board);
-        }
-
-        board = new(this);
-        board.MoveRight();
-        toCheck.Add(board);
-
-
-        if (toCheck.Count == 2)
-        {
-            temp += " D,";
-            thereIsMove = true;
-            toCheck.Remove(board);
-        }
-
-        board = new(this);
-        board.MoveLeft();
-        toCheck.Add(board);
-
-        if (toCheck.Count == 2)
-        {
-            temp += " A,";
-            thereIsMove = true;
-        }
-
-        temp += " } \n";
-
-        return (thereIsMove, temp);
     }
 
     protected bool PrintPossibleMoves()
@@ -280,7 +222,7 @@ internal class Board
         bool thereIsMove;
         string temp;
 
-        (thereIsMove, temp) = CheckMovesUsingHashSet();
+        (thereIsMove, temp) = CheckMoves(false);
 
         if (!thereIsMove) return false;
 
@@ -379,7 +321,7 @@ internal class Board
 
         PlayBoard[obstacle.Row, obstacle.Column] = ' ';
 
-        return obstacle + Moves._up;
+        return obstacle + Moves.Up;
     }
 
     public bool IsFinal()
@@ -398,38 +340,37 @@ internal class Board
         bool thereIsMove;
         string temp;
 
-        (thereIsMove, temp) = CheckMoves();
+        (thereIsMove, temp) = CheckMoves(false);
 
         if (!thereIsMove) return boards;
 
         for (int i = 0; i < temp.Length; i++)
         {
-            if (temp[i] == 'W')
+            switch (temp[i])
             {
-                Board board = new(this);
-                board.MoveUp();
-                boards.Add(board);
-            }
+                case 'W':
+                    Board Up = new(this);
+                    Up.MoveUp();
+                    boards.Add(Up);
+                    break;
 
-            else if (temp[i] == 'S')
-            {
-                Board board = new(this);
-                board.MoveDown();
-                boards.Add(board);
-            }
+                case 'S':
+                    Board Down = new(this);
+                    Down.MoveDown();
+                    boards.Add(Down);
+                    break;
 
-            else if (temp[i] == 'D')
-            {
-                Board board = new(this);
-                board.MoveRight();
-                boards.Add(board);
-            }
+                case 'A':
+                    Board Left = new(this);
+                    Left.MoveLeft();
+                    boards.Add(Left);
+                    break;
 
-            else if (temp[i] == 'A')
-            {
-                Board board = new(this);
-                board.MoveLeft();
-                boards.Add(board);
+                case 'D':
+                    Board Right = new(this);
+                    Right.MoveRight();
+                    boards.Add(Right);
+                    break;
             }
         }
 
@@ -440,7 +381,8 @@ internal class Board
     {
         if (obj is not Board board) return false;
 
-        if (RowNumbers != board.RowNumbers || ColumnNumbers != board.ColumnNumbers) return false;
+        if (RowNumbers != board.RowNumbers
+            || ColumnNumbers != board.ColumnNumbers) return false;
 
         for (int i = 0; i < RowNumbers; i++)
         {
@@ -455,7 +397,6 @@ internal class Board
 
     public override int GetHashCode()
     {
-
         unchecked
         {
             HashCode hash = new();
@@ -467,6 +408,7 @@ internal class Board
             {
                 hash.Add(ball);
             }
+
             if (FixedWalls is not null)
             {
                 foreach (var wall in FixedWalls)
@@ -490,16 +432,14 @@ internal class Board
 
             if (MovingWalls is not null)
             {
-                foreach (var wall in MovingWalls)
+                foreach (var movingWall in MovingWalls)
                 {
-                    hash.Add(wall);
+                    hash.Add(movingWall);
                 }
             }
 
             return hash.ToHashCode();
-
         }
-
     }
 
     public override string ToString()

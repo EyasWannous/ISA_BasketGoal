@@ -9,9 +9,6 @@ namespace ISA_BasketGoal.Phases;
 internal class Phase26 : PhaseBase
 {
 
-
-    public List<Position>? MovingW;
-
     public Phase26()
     {
         Columns = 5;

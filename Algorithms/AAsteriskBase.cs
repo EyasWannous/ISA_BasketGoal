@@ -20,24 +20,31 @@ internal abstract class AAsteriskBase : ICostAlgorithm
 
         while (NodesQueue.Count > 0)
         {
-            BoardNode temp = NodesQueue.Dequeue();
+            BoardNode current = NodesQueue.Dequeue();
 
-            if (BoardNodes.Contains(temp)) continue;
+            if (BoardNodes.Contains(current))
+                continue;
 
-            BoardNodes.Add(temp);
+            BoardNodes.Add(current);
 
-            if (temp.IsFinal()) return;
-
-            temp.GetChildren();
-
-            if (temp.MyChildren is null) continue;
+            if (current.IsFinal())
+                return;
 
             count++;
-            temp.MyChildren.ForEach(child =>
-            {
-                NodesQueue.Enqueue(child, GetCost(boardNode) + count);
-            });
+            EnqueueChildren(current, count);
         }
+    }
+
+    private void EnqueueChildren(BoardNode parent, int count)
+    {
+        parent.GetChildren();
+
+        if (parent.MyChildren is null) return;
+
+        parent.MyChildren.ForEach(child =>
+        {
+            NodesQueue.Enqueue(child, GetCost(child) + count);
+        });
     }
 
 }

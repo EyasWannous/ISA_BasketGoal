@@ -36,9 +36,7 @@ internal class UCS : ICostAlgorithm
             {
                 NodesQueue.Enqueue(child, count);
             });
-
         }
-
     }
 
 }

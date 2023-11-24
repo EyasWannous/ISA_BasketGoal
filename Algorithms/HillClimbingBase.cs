@@ -12,7 +12,7 @@ internal abstract class HillClimbingBase : ICostAlgorithm
 
     public void Solve(BoardNode boardNode)
     {
-        EnqueueInitialNode(boardNode);
+        NodesQueue.Enqueue(boardNode, CalculateCost(boardNode));
 
         while (NodesQueue.Count > 0)
         {
@@ -28,11 +28,6 @@ internal abstract class HillClimbingBase : ICostAlgorithm
 
             EnqueueChildren(current);
         }
-    }
-
-    private void EnqueueInitialNode(BoardNode node)
-    {
-        NodesQueue.Enqueue(node, CalculateCost(node));
     }
 
     private void EnqueueChildren(BoardNode parent)

@@ -35,7 +35,6 @@ internal class DFS : INoCostAlgorithm
             {
                 NodesStack.Push(child);
             });
-
         }
     }
 

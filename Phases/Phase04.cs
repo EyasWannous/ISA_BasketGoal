@@ -9,7 +9,6 @@ namespace ISA_BasketGoal.Phases;
 internal class Phase04 : PhaseBase
 {
 
-
     public Phase04()
     {
         Columns = 3;

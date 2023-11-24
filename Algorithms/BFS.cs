@@ -34,7 +34,6 @@ internal class BFS : INoCostAlgorithm
             {
                 NodesQueue.Enqueue(child);
             });
-
         }
     }
 

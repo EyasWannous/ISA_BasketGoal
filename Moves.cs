@@ -8,8 +8,8 @@ namespace ISA_BasketGoal;
 
 internal static class Moves
 {
-    public static readonly Position _up = new(-1, 0);
-    public static readonly Position _down = new(1, 0);
-    public static readonly Position _left = new(0, -1);
-    public static readonly Position _right = new(0, 1);
+    public static readonly Position Up = new(-1, 0);
+    public static readonly Position Down = new(1, 0);
+    public static readonly Position Left = new(0, -1);
+    public static readonly Position Right = new(0, 1);
 }

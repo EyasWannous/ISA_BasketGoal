@@ -14,11 +14,7 @@ internal static class Write
     public static void Invalid() => Console.WriteLine("Invalid");
 
     public static void Repeat()
-    {
-        Console.WriteLine();
-        Console.WriteLine("To Repeat the game press any Key (or \"quit()\" to quit)");
-        Console.WriteLine();
-    }
+        => Console.WriteLine("\nTo Repeat the game press any Key (or \"quit()\" to quit)\n");
 
     public static void UsableKeys()
     {
@@ -34,26 +30,18 @@ internal static class Write
     public static void Sorry() => Console.WriteLine("We Are Sorry, You Left");
 
     public static void Board(BoardNode board)
-    {
-        Console.WriteLine();
-        Console.WriteLine(board);
-        Console.WriteLine();
-    }
+        => Console.WriteLine($"\n{board}\n");
 
     public static void Board(Board board)
-    {
-        Console.WriteLine();
-        Console.WriteLine(board);
-        Console.WriteLine();
-    }
+        => Console.WriteLine($"\n{board}\n");
 
-    public static void MoveUp() => Console.WriteLine("Move Up Using 'W' :\n");
+    public static void MoveUp() => Console.WriteLine("\nMove Up Using 'W' :\n");
 
-    public static void MoveDown() => Console.WriteLine("Move Down Using 'S' :\n");
+    public static void MoveDown() => Console.WriteLine("\nMove Down Using 'S' :\n");
 
-    public static void MoveLeft() => Console.WriteLine("Move Lefts Using 'A' :\n");
+    public static void MoveLeft() => Console.WriteLine("\nMove Lefts Using 'A' :\n");
 
-    public static void MoveRight() => Console.WriteLine("Move Right Using 'D' :\n");
+    public static void MoveRight() => Console.WriteLine("\nMove Right Using 'D' :\n");
 
     public static void EndOfState(int count, int counter)
     {
@@ -67,13 +55,9 @@ internal static class Write
 
     public static void Statistics(int count, double elapsed, long elapsedMS)
     {
-        Console.WriteLine();
-        Console.WriteLine($"Statistics :");
-        Console.WriteLine();
+        Console.WriteLine("\nStatistics :\n");
 
-        Console.WriteLine();
-        Console.WriteLine($"Number of States : {count}");
-        Console.WriteLine();
+        Console.WriteLine($"\nNumber of States : {count}\n");
 
         Console.WriteLine($"Elapsed time is : {elapsed:N1}s");
         Console.WriteLine($"Elapsed time is : {elapsedMS:N1}ms");

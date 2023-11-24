@@ -15,6 +15,7 @@ internal abstract class PhaseBase
     public Position? Coin { get; set; }
     public List<Position>? BallP { get; set; }
     public List<Position>? Walls { get; set; }
+    public List<Position>? MovingW { get; set; }
 
     public abstract BoardNode Load();
 }

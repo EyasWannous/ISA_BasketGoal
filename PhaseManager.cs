@@ -11,7 +11,7 @@ internal static class PhaseManager
 {
     private static int CurrentPhase { get; set; }
 
-    private static List<BoardNode> phases = new()
+    private static readonly List<BoardNode> _phases = new()
     {
         new Phase01().Load(),
         new Phase02().Load(),
@@ -57,21 +57,20 @@ internal static class PhaseManager
 
     public static BoardNode LoadPhase(int PhaseNumber)
     {
-        CurrentPhase = PhaseNumber;
-        return new(phases[PhaseNumber - 1]);
+        CurrentPhase = PhaseNumber - 1;
+        return new(_phases[CurrentPhase]);
     }
 
     public static BoardNode NextPhase()
     {
         CurrentPhase++;
-        if (CurrentPhase < phases.Count)
+        if (CurrentPhase < _phases.Count)
         {
             return LoadPhase(CurrentPhase);
         }
         // Game completed, handle end game logic
 
-        CurrentPhase = 1;
-        return LoadPhase(CurrentPhase);
+        return LoadPhase(1);
     }
 
 }

@@ -20,12 +20,6 @@ internal class Position : IComparable<Position>
         Column = column;
     }
 
-    public void Deconstruct(out int row, out int column)
-    {
-        row = Row;
-        column = Column;
-    }
-
     public override bool Equals(object? obj)
     {
         if (obj is not Position position) return false;
@@ -37,7 +31,9 @@ internal class Position : IComparable<Position>
     {
         if (other is null) return 1;
 
-        return Row.CompareTo(other.Row) + Column.CompareTo(other.Column);
+        if (Row.CompareTo(other.Row) != 0) return Row.CompareTo(other.Row);
+
+        else return Column.CompareTo(other.Column);
     }
 
     public Position Copy() => new(Row, Column);

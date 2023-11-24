@@ -25,16 +25,13 @@ internal class UserPlayMode
         {
             Key = Console.ReadKey(true).KeyChar;
 
-            Console.WriteLine();
+            BoardNode checkMove = new(MyBoard);
+            MyBoard.Move(Key);
 
-            BoardNode temp = new(MyBoard);
-            if (MyBoard.Move(Key))
+            if (!checkMove.Equals(MyBoard))
             {
-                if (!temp.Equals(MyBoard))
-                {
-                    Write.CurrentState(MyBoard);
-                    counter++;
-                }
+                Write.CurrentState(MyBoard);
+                counter++;
             }
         }
 

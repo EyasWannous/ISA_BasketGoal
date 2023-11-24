@@ -11,21 +11,21 @@ namespace ISA_BasketGoal;
 
 internal class PlayManager
 {
-    private string _playMode;
+    private readonly string _playMode;
     private System.Diagnostics.Stopwatch? _watch;
-    private BFS _bFS = new();
-    private DFS _dFS = new();
-    private UCS _uCS = new();
-    private HillClimbing_1 _hC_1 = new();
-    private HillClimbing_2 _hC_2 = new();
-    private HillClimbing_3 _hC_3 = new();
-    private HammingDistance _hD = new();
-    private AAsterisk_1 _aA_1 = new();
-    private AAsterisk_2 _aA_2 = new();
-    private AAsterisk_3 _aA_3 = new();
-    private AHammingDistance _aHD = new();
+    private readonly BFS _bFS = new();
+    private readonly DFS _dFS = new();
+    private readonly UCS _uCS = new();
+    private readonly HillClimbing_1 _hC_1 = new();
+    private readonly HillClimbing_2 _hC_2 = new();
+    private readonly HillClimbing_3 _hC_3 = new();
+    private readonly HammingDistance _hD = new();
+    private readonly AAsterisk_1 _aA_1 = new();
+    private readonly AAsterisk_2 _aA_2 = new();
+    private readonly AAsterisk_3 _aA_3 = new();
+    private readonly AHammingDistance _aHD = new();
     private List<BoardNode> _finalStates = new();
-    private List<FinalState> _finals = new();
+    private readonly List<FinalState> _finals = new();
     private BoardNode? _boardNode;
     public PlayManager(string playMode) => _playMode = playMode;
 

@@ -15,13 +15,16 @@ internal static class CostFunctions
         {
             if (ball.Column == boardNode.BasketPosition.Column) count--;
         });
+
         return count;
     }
 
     public static int WhereIsBasket(BoardNode boardNode)
     {
         if (boardNode.BasketPosition.Row == 0) return boardNode.RowNumbers;
+
         else if (boardNode.BasketPosition.Row == boardNode.RowNumbers - 1) return 0;
+
         return boardNode.RowNumbers - boardNode.BasketPosition.Row;
     }
 
@@ -36,6 +39,7 @@ internal static class CostFunctions
                     + Math.Abs(boardNode.BasketPosition.Column - ball.Column)
                 );
         });
+
         return cost;
     }
 }
