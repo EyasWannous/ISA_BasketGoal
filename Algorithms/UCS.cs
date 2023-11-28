@@ -14,8 +14,7 @@ internal class UCS : ICostAlgorithm
 
     public void Solve(BoardNode boardNode)
     {
-        int count = 0;
-        NodesQueue.Enqueue(boardNode, count);
+        NodesQueue.Enqueue(boardNode, 0);
 
         while (NodesQueue.Count > 0)
         {
@@ -31,10 +30,10 @@ internal class UCS : ICostAlgorithm
 
             if (temp.MyChildren is null) continue;
 
-            count++;
             temp.MyChildren.ForEach(child =>
             {
-                NodesQueue.Enqueue(child, count);
+                child.Cost = child.Father!.Cost + 1;
+                NodesQueue.Enqueue(child, child.Cost);
             });
         }
     }

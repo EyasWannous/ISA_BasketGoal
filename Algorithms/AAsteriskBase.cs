@@ -15,7 +15,6 @@ internal abstract class AAsteriskBase : ICostAlgorithm
 
     public void Solve(BoardNode boardNode)
     {
-        int count = 0;
         NodesQueue.Enqueue(boardNode, GetCost(boardNode));
 
         while (NodesQueue.Count > 0)
@@ -30,12 +29,11 @@ internal abstract class AAsteriskBase : ICostAlgorithm
             if (current.IsFinal())
                 return;
 
-            count++;
-            EnqueueChildren(current, count);
+            EnqueueChildren(current);
         }
     }
 
-    private void EnqueueChildren(BoardNode parent, int count)
+    private void EnqueueChildren(BoardNode parent)
     {
         parent.GetChildren();
 
@@ -43,7 +41,8 @@ internal abstract class AAsteriskBase : ICostAlgorithm
 
         parent.MyChildren.ForEach(child =>
         {
-            NodesQueue.Enqueue(child, GetCost(child) + count);
+            child.Cost = child.Father!.Cost + 1;
+            NodesQueue.Enqueue(child, GetCost(child) + child.Cost);
         });
     }
 

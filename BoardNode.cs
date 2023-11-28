@@ -11,6 +11,8 @@ internal class BoardNode : Board
 {
     public BoardNode? Father { get; set; }
 
+    public int Cost { get; set; } = 0;
+
     public List<BoardNode>? MyChildren { get; set; }
 
     public BoardNode(Board myBoard) : base(myBoard) { }
