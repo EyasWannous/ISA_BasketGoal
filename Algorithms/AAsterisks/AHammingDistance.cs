@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ISA_BasketGoal.Algorithms.AAsterisks;
 
-internal class AHammingDistance : AAsteriskBase
+internal class AManhattanDistance : AAsteriskBase
 {
     public override int GetCost(BoardNode boardNode) => CostFunctions.Distance(boardNode);
 }

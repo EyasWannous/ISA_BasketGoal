@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ISA_BasketGoal.Algorithms.HillClimbings;
 
-internal class HammingDistance : HillClimbingBase
+internal class ManhattanDistance : HillClimbingBase
 {
     protected override int CalculateCost(BoardNode boardNode) => CostFunctions.Distance(boardNode);
 }

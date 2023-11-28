@@ -51,11 +51,11 @@ while (Key != "quit()")
         "7" => new("HillClimbing_1"),
         "8" => new("HillClimbing_2"),
         "9" => new("HillClimbing_3"),
-        "10" => new("HammingDistance"),
+        "10" => new("ManhattanDistance "),
         "11" => new("AAsterisk_1"),
         "12" => new("AAsterisk_2"),
         "13" => new("AAsterisk_3"),
-        "14" => new("AHammingDistance"),
+        "14" => new("AManhattanDistance "),
         _ => new("User"),
     };
 
